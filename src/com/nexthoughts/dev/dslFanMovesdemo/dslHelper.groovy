@@ -7,7 +7,7 @@ import org.codehaus.groovy.control.customizers.SecureASTCustomizer
 
 def binding = new Binding([
         fan: new Fan(),
-//         * : FanMoves.values().collectEntries { [(it.name()): it] }
+         * : FanMoves.values().collectEntries { [(it.name()): it] }
 //        one: FanMoves.one,
 //        two: FanMoves.two,
 //        three: FanMoves.three,
@@ -21,16 +21,22 @@ conf.addCompilationCustomizers(customizer);
 customizer.closuresAllowed=false
 customizer.setReceiversBlackList(Arrays.asList(System.class.getName()));
 def importCustomizer = new ImportCustomizer()
-importCustomizer.addStaticStars FanMoves.class.name
+//importCustomizer.addStaticStars FanMoves.class.name
 
 conf.addCompilationCustomizers importCustomizer
-//config.scriptBaseClass = RobotBaseScriptClass.class.name
+//scripts evaluated with this configuration will inherit from that class
 conf.scriptBaseClass = RobotBaseScriptClass.class.name
 def shell = new GroovyShell(this.class.classLoader, binding,conf)
 shell.evaluate(new File("/home/chetan/Downloads/jonathon/groovyDSL/src/fan_command.groovy"))
 
+
+
+//Using a base script class with a move method delegating to fan instance
 abstract class RobotBaseScriptClass extends Script {
     void move(FanMoves speed) {
-        this.binding.fan.move speed
+        //access the fan at through the scripts binding
+        def fan = this.binding.fan
+        //The move method is at script level
+        fan.move speed
     }
 }
