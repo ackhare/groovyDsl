@@ -12,13 +12,14 @@ Integer.metaClass.getMeter={->
     new Distance(delegate,Unit.meter)
 }
 Integer.metaClass.getKm={->
+
     new Distance(delegate,Unit.kilometer)
 }
 
 
 def binding = new Binding([
-        robot: new Robot()
-//        h: new Duration(1,TimeUnit.hour)
+        robot: new Robot(),
+        h: new Duration(TimeUnit.hour)
 ])
 
 def importCustomizer = new ImportCustomizer()

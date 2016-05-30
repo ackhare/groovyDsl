@@ -11,7 +11,7 @@ seconds  ('s',1)
 String abbreviation
 double multiplier
 
-    TimeUnit(double multiplier, String abbreviation) {
+    TimeUnit( String abbreviation,double multiplier) {
         this.multiplier = multiplier
         this.abbreviation = abbreviation
     }

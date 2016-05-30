@@ -7,6 +7,10 @@ import groovy.transform.TupleConstructor
  */
 //@TupleConstructor
 class Speed {
+    Speed(Distance distance, Duration duration) {
+        this.distance = distance
+        this.duration = duration
+    }
     Distance distance
     Duration duration
 

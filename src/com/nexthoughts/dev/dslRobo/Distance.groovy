@@ -15,6 +15,7 @@ class Distance {
 
     Speed div(Duration t)
     {
+
         new Speed(this,t)
     }
     String toString()

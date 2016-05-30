@@ -6,8 +6,18 @@ package com.nexthoughts.dev.dslRobo
 class  Duration {
     int amount
     TimeUnit unit
+    Duration(int amount, TimeUnit unit) {
+
+        this.amount = amount
+        this.unit = unit
+    }
+    Duration(TimeUnit unit) {
+
+//        this.amount = amount
+        this.unit = unit
+    }
     String toString()
     {
-        "$amount $unit"
+     amount?"$amount $unit":"$unit"
     }
 }
